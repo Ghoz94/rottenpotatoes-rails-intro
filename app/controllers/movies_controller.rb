@@ -57,7 +57,7 @@ class MoviesController < ApplicationController
   
   #return array of ratings
   def self.list_of_ratings
-    return ['G','PG','PG-13','R','NC-17']
+    return %w[G PG PG-13 R NC-17]
   end
 
 end
