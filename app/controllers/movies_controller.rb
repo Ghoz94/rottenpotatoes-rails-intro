@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     
     #set all_ratings with the list
-    #@all_ratings = Movie.list_of_ratings
+    @all_ratings = Movie.list_of_ratings
     
     # based off sort_type, sort accordingly using ActiveRecord order
     if params[:sort_type] == "title"
