@@ -54,10 +54,4 @@ class MoviesController < ApplicationController
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
-  
-  #return array of ratings
-  def self.list_of_ratings
-    return %w[G PG PG-13 R NC-17]
-  end
-
 end
