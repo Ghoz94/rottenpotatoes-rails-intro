@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
       @movie_highlight = "hilite"
       @movies = Movie.order("title asc")
     elsif params[:sort_type] == "date"
-      @movie_highlight = "hilite"
+      @date_highlight = "hilite"
       @movies = Movie.order("release_date asc")
     end
   end
