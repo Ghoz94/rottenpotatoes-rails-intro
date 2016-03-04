@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    # based off sort_type, sort accordingly
+    # based off sort_type, sort accordingly using ActiveRecord order
     if params[:sort_type] == "title"
       @hltitle = "hilite"
       @movies = Movie.order(:title)
