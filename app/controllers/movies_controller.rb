@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def movie_params
-    params.require(:movie).permit(:title, :rating, :description, :release_date)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :sort_type)
   end
 
   def show
@@ -11,23 +11,15 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # If the user has specified a sorting mechanism, update session sorting mechanism
-    if params[:sorting_mechanism].nil?
-      # If user didn't specify a sorting mechanism, then we're going to sort by the
-      # sorting mechanism in our sessions
-    else
-      session[:sorting_mechanism] = params[:sorting_mechanism]
-    end
-    
     @movies = Movie.all
     
     # title_sort symbol was placed in the params
-    if session[:sorting_mechanism] == "title"
-      @movies = @movies.sort! { |a,b| a.title <=> b.title }
+    if params[:sort_type] == "title"
       @movie_highlight = "hilite"
-    elsif session[:sorting_mechanism] == "release_date"
-      @movies = @movies.sort! { |a,b| a.release_date <=> b.release_date }
+      @movies = Movie.order("title asc")
+    elsif params[:sort_type] == "date"
       @date_highlight = "hilite"
+      @movies = Movie.order! { "release_date asc" }
     else
     
     end
