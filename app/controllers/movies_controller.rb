@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
 
   def movie_params
+    #0Added sort_type to denote how we wish to sort
     params.require(:movie).permit(:title, :rating, :description, :release_date, :sort_type)
   end
 
@@ -12,15 +13,15 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    
-    # title_sort symbol was placed in the params
+    # based off sort_type, sort accordingly
     if params[:sort_type] == "title"
       @movie_highlight = "hilite"
-      @movies = Movie.order("title asc")
+     # @movies = Movie.order("title asc")
+      Movie.order(:title)
+      => SELECT "movies".* FROM "movies" ORDER BY title
     elsif params[:sort_type] == "date"
+      @movie_highlight = "hilite"
       @movies = Movie.order("release_date asc")
-    else
-    
     end
   end
 
