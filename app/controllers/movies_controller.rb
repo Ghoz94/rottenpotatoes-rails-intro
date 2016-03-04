@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     
     #set all_ratings with the list
-    @all_ratings = Movie.list_of_ratings
+    #@all_ratings = Movie.list_of_ratings
     
     # based off sort_type, sort accordingly using ActiveRecord order
     if params[:sort_type] == "title"
@@ -57,8 +57,8 @@ class MoviesController < ApplicationController
   
   #return array of ratings
   def self.list_of_ratings
-    ratings = ['G','PG','PG-13','R','NC-17']
-    return ratings
+    ratings_list = ['G','PG','PG-13','R','NC-17']
+    return ratings_list
   end
 
 end
