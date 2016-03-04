@@ -16,10 +16,10 @@ class MoviesController < ApplicationController
     # based off sort_type, sort accordingly
     if params[:sort_type] == "title"
       @hltitle = "hilite"
-      @movies = Movie.order("title asc")
+      @movies = Movie.order(:title)
     elsif params[:sort_type] == "date"
       @hldate = "hilite"
-      @movies = Movie.order("release_date asc")
+      @movies = Movie.order(:release_date)
     end
   end
 
