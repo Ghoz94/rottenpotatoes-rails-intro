@@ -13,6 +13,10 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    
+    #set all_ratings with the list
+    @all_ratings = Movie.list_of_ratings
+    
     # based off sort_type, sort accordingly using ActiveRecord order
     if params[:sort_type] == "title"
       @hltitle = "hilite"
@@ -49,6 +53,12 @@ class MoviesController < ApplicationController
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
+  end
+  
+  #return array of ratings
+  def self.list_of_ratings
+    ratings = ['G','PG','PG-13','R','NC-17']
+    return ratings
   end
 
 end
