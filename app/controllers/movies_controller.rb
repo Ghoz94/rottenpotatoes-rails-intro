@@ -32,12 +32,10 @@ class MoviesController < ApplicationController
     # based off sort_type, sort accordingly using ActiveRecord order
     if session[:sort_type] == "title"
       @hltitle = "hilite"
-      @movies = Movie.order(:title)
-      #@movies = Movie.order(:title).select{ |movie| session[:filter].include? movie.rating}
+      @movies = Movie.order(:title).select{ |movie| session[:filter].include? movie.rating}
     elsif session[:sort_type] == "date"
       @hldate = "hilite"
       @movies = Movie.order(:release_date).select{ |movie| session[:filter].include? movie.rating}
-      #@movies = @movies.sort! { |a,b| a.release_date <=> b.release_date }
     end
   end
 
