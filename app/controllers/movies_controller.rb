@@ -30,7 +30,6 @@ class MoviesController < ApplicationController
     end
     
     session[:sort_type] = params[:sort_type]
-    
     # based off sort_type, sort accordingly using ActiveRecord order
     if session[:sort_type] == "title"
       @hltitle = "hilite"
