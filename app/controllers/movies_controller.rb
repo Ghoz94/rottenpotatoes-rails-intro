@@ -16,19 +16,28 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     #set all_ratings with the list
     @all_ratings = Movie.list_of_ratings
-    #if the ratings are checked, set the filter and add it to session
+    #if the ratings are checked, set the filter and add it to session and filter the movies
     if params[:ratings].nil? == false
       @filter = params[:ratings]
       session[:filter] = @filter
+      @movies = @movies.select{ |movie| session[:filter].include? movie.rating}
     end
     
-    #filter the movies
-    #if the ratings are checked, set the filter and add it to session
-    if params[:ratings].nil? == false
-        @movies = @movies.select{ |movie| session[:filter].include? movie.rating}
+    #if there is a sort type, set the session
+    if params[:sort_type].nil? == false
+      session[:sort_type] = params[:sort_type]
     end
     
-    session[:sort_type] = params[:sort_type]
+    #if no rating filter or sort type, redirect accordingly
+    if(params[:ratings].nil? == true && params[:sort_type].nil? == true)
+      @filter = session[:filter]
+      @sort_type = session[:sort_type]
+      flash.keep
+      redirect_to_movies_path({ratings: @filter, order_by: @sort_type})
+    end
+  
+    if(params[:ratings].nil? == true && params[])
+    
     # based off sort_type, sort accordingly using ActiveRecord order and then filter it
     if session[:sort_type] == "title"
       @hltitle = "hilite"
