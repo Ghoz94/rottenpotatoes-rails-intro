@@ -16,7 +16,6 @@ class MoviesController < ApplicationController
     
     #set all_ratings with the list
     @all_ratings = Movie.list_of_ratings
-    
     #if the ratings are checked, set the filter and add it to session
     if params[:ratings].nil? == false
       @filter = params[:ratings]
