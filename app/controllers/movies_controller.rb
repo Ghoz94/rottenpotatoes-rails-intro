@@ -35,8 +35,6 @@ class MoviesController < ApplicationController
       #flash.keep
       #redirect_to_movies_path({ratings: @filter, order_by: @sort_type})
     #end
-  
-    if(params[:ratings].nil? == true && params[])
     
     # based off sort_type, sort accordingly using ActiveRecord order and then filter it
     if session[:sort_type] == "title"
