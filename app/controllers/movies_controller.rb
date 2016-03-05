@@ -26,6 +26,8 @@ class MoviesController < ApplicationController
     #filter the movies
     @movies = @movies.select{ |movie| session[:filter].include? movie.rating}
     
+    session[:sort_type] = params[:sort_type]
+    
     # based off sort_type, sort accordingly using ActiveRecord order
     if session[:sort_type] == "title"
       @hltitle = "hilite"
