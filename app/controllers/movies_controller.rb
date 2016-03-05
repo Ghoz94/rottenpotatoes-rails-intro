@@ -12,7 +12,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-        
     @movies = Movie.all
     #set all_ratings with the list
     @all_ratings = Movie.list_of_ratings
@@ -28,7 +27,7 @@ class MoviesController < ApplicationController
       session[:sort_type] = params[:sort_type]
     end
     
-    #if no rating filter or sort type, redirect accordingly
+    #if no rating filter or sort type, redirect accordingly (last settings)
     if(params[:ratings].nil? == true && params[:sort_type].nil? == true)
       flash.keep
       redirect_to movies_path(:sort_type => session[:sort_type], :ratings => session[:ratings])
