@@ -13,7 +13,6 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    
     #set all_ratings with the list
     @all_ratings = Movie.list_of_ratings
     #if the ratings are checked, set the filter and add it to session
