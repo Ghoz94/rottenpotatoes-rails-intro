@@ -17,14 +17,16 @@ class MoviesController < ApplicationController
     #set all_ratings with the list
     @all_ratings = Movie.list_of_ratings
     
+    #if the ratings are checked, set the filter and add it to session
     if params[:ratings].nil? == false
       @filter = params[:ratings]
       session[:filter] = @filter
     end
     
-    if(session[:filter])
+    
+    #if(session[:filter])
       @movies = @movies.select{ |movie| session[:filter].include? movie.rating}
-    end
+    #end
     
     # based off sort_type, sort accordingly using ActiveRecord order
     if params[:sort_type] == "title"
