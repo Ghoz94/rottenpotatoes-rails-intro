@@ -21,7 +21,6 @@ class MoviesController < ApplicationController
       session[:filter] = @filter
       @movies = @movies.select{ |movie| session[:filter].include? movie.rating}
     end
-    
     #if there is a sort type, set the session
     if params[:sort_type].nil? == false
       session[:sort_type] = params[:sort_type]
